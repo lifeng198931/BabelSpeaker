@@ -8,12 +8,12 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
-import com.metals.data.InitData;
+import com.babelspeaker.data.InitData;
 
 import android.util.Base64;
 
 /**
- * DES 加解�?
+ * DES 加解密
  * 
  * @author mark
  * 
@@ -62,12 +62,12 @@ public class Des {
     }
 
     /**
-     * DES算法，加�?
+     * DES算法，加密
      * 
      * @param data
      *            待加密字符串
      * @param key
-     *            加密私钥，长度不能够小于8�?
+     *            加密私钥，长度不能够小于8位
      * @return 加密后的字节数组，一般结合Base64编码使用
      * @throws CryptException
      *             异常
@@ -77,12 +77,12 @@ public class Des {
     }
 
     /**
-     * DES算法，加�?
+     * DES算法，加密
      * 
      * @param data
      *            待加密字符串
      * @param key
-     *            加密私钥，长度不能够小于8�?
+     *            加密私钥，长度不能够小于8位
      * @return 加密后的字节数组，一般结合Base64编码使用
      * @throws CryptException
      *             异常
@@ -91,7 +91,7 @@ public class Des {
         try {
             DESKeySpec dks = new DESKeySpec(key.getBytes());
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-            // key的长度不能够小于8位字�?
+            // key的长度不能够小于8位字节
             Key secretKey = keyFactory.generateSecret(dks);
             Cipher cipher = Cipher.getInstance(ALGORITHM_DES);
             IvParameterSpec iv = new IvParameterSpec(key.getBytes());
@@ -107,12 +107,12 @@ public class Des {
     }
 
     /**
-     * DES算法，解�?
+     * DES算法，解密
      * 
      * @param data
      *            待解密字符串
      * @param key
-     *            解密私钥，长度不能够小于8�?
+     *            解密私钥，长度不能够小于8位
      * @return 解密后的字节数组
      * @throws Exception
      *             异常
@@ -121,7 +121,7 @@ public class Des {
         try {
             DESKeySpec dks = new DESKeySpec(key.getBytes());
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-            // key的长度不能够小于8位字�?
+            // key的长度不能够小于8位字节
             Key secretKey = keyFactory.generateSecret(dks);
             Cipher cipher = Cipher.getInstance(ALGORITHM_DES);
             IvParameterSpec iv = new IvParameterSpec(key.getBytes());
@@ -134,7 +134,7 @@ public class Des {
     }
 
     /**
-     * 获取编码后的�?
+     * 获取编码后的值
      * 
      * @param key
      * @param data

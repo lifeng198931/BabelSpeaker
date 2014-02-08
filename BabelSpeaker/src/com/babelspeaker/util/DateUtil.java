@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 时间帮助�?
+ * 时间帮助类
  * 
  * @version $Id: DateUtil.java,v 1.1 2008/05/28 04:29:52 linan Exp $
  * @author LiNan
@@ -26,10 +26,10 @@ public class DateUtil {
     }
 
     /**
-     * 得到当前的时�?自定义时间格�?y �?M �?d �?H �?m �?s �?
+     * 得到当前的时间,自定义时间格式 y 年 M 月 d 日 H 时 m 分 s 秒
      * 
      * @param dateFormat
-     *            输出显示的时间格�?
+     *            输出显示的时间格式
      * @return
      */
     public String getCurrentDate(String dateFormat) {
@@ -49,7 +49,7 @@ public class DateUtil {
     }
 
     /**
-     * 日期格式化，自定义输出日期格�?
+     * 日期格式化，自定义输出日期格式
      * 
      * @param date
      * @return
@@ -60,13 +60,13 @@ public class DateUtil {
     }
 
     /**
-     * 返回当前日期的前�?��时间日期，amount为正�?当前时间后的时间 为负�?当前时间前的时间 默认日期格式yyyy-MM-dd
+     * 返回当前日期的前一个时间日期，amount为正数 当前时间后的时间 为负数 当前时间前的时间 默认日期格式yyyy-MM-dd
      * 
      * @param field
-     *            日历字段 y �?M �?d �?H �?m �?s �?
+     *            日历字段 y 年 M 月 d 日 H 时 m 分 s 秒
      * @param amount
      *            数量
-     * @return �?��日期
+     * @return 一个日期
      */
     public String getPreDate(String field, int amount) {
         calendar.setTime(new Date());
@@ -87,15 +87,15 @@ public class DateUtil {
     }
 
     /**
-     * 某一个日期的前一个日�?
+     * 某一个日期的前一个日期
      * 
      * @param d
-     *            ,某一个日�?
+     *            ,某一个日期
      * @param field
-     *            日历字段 y �?M �?d �?H �?m �?s �?
+     *            日历字段 y 年 M 月 d 日 H 时 m 分 s 秒
      * @param amount
      *            数量
-     * @return �?��日期
+     * @return 一个日期
      */
     public String getPreDate(Date d, String field, int amount) {
         calendar.setTime(d);
@@ -116,7 +116,7 @@ public class DateUtil {
     }
 
     /**
-     * 某一个时间的前一个时�?
+     * 某一个时间的前一个时间
      * 
      * @param date
      * @return

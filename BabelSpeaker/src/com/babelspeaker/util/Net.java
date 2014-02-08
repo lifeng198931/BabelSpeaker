@@ -26,10 +26,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-import com.metals.data.Api;
-import com.metals.data.InitData;
-import com.metals.data.ReceiverList;
-import com.metals.logic.AccountLogic;
+import com.babelspeaker.data.Api;
+import com.babelspeaker.data.InitData;
+import com.babelspeaker.data.ReceiverList;
+import com.babelspeaker.logic.AccountLogic;
 
 public class Net {
 
@@ -62,7 +62,7 @@ public class Net {
             remoteString = httpclient.execute(httpget, responseHandler);
         } catch (Exception e) {
             // e.printStackTrace();
-            // System.out.println("出错�?);
+            // System.out.println("出错了");
             remoteString = "";
         }
         httpclient.getConnectionManager().shutdown();
@@ -119,7 +119,7 @@ public class Net {
     public void saveBug(String info, Context context) {
         // Log.d("info", info);
         String model = Build.MODEL; // 手机型号
-        String sdk = Build.VERSION.SDK;// SDK版本�?
+        String sdk = Build.VERSION.SDK;// SDK版本号
 
         if (info.length() > 2500) {
             info = info.substring(0, 2500);
@@ -181,7 +181,7 @@ public class Net {
             String regEx_blank = " +";
             // 定义多个空格的正则表达式
             String regEx_table = "\t+";
-            // 定义多个制表符的正则表达�?
+            // 定义多个制表符的正则表达式
             String regEx_enter = "\n+";
             // 定义多个回车的正则表达式
 
@@ -208,7 +208,7 @@ public class Net {
 
             p_blank = Pattern.compile(regEx_blank, Pattern.CASE_INSENSITIVE);
             m_blank = p_blank.matcher(htmlStr);
-            htmlStr = m_blank.replaceAll(" "); // 过滤过多的空�?
+            htmlStr = m_blank.replaceAll(" "); // 过滤过多的空格
 
             p_table = Pattern.compile(regEx_table, Pattern.CASE_INSENSITIVE);
             m_table = p_table.matcher(htmlStr);
@@ -224,7 +224,7 @@ public class Net {
             System.err.println("Html2Text: " + e.getMessage());
         }
 
-        return textStr;// 返回文本字符�?
+        return textStr;// 返回文本字符串
     }
 
 }

@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 
 public class AsyncImageLoader {
-    // 为了加快速度，加入了缓存（主要应用于重复图片较多时，或�?同一个图片要多次被访问，比如在ListView时来回滚动）
+    // 为了加快速度，加入了缓存（主要应用于重复图片较多时，或者同一个图片要多次被访问，比如在ListView时来回滚动）
     private Map<String, SoftReference<Drawable>> imageCache = new HashMap<String, SoftReference<Drawable>>();
 
     /**
@@ -18,7 +18,7 @@ public class AsyncImageLoader {
      *            图像url地址
      * @param callback
      *            回调接口
-     * @return 返回内存中缓存的图像，第�?��加载返回null
+     * @return 返回内存中缓存的图像，第一次加载返回null
      */
     public Drawable loadDrawable(final String imageUrl,
             final ImageCallback callback) {
@@ -46,7 +46,8 @@ public class AsyncImageLoader {
 
         }.start();
         /*
-         * 下面注释的这段代码是Handler的一种代替方�?         */
+         * 下面注释的这段代码是Handler的一种代替方法
+         */
         // new AsyncTask() {
         // @Override
         // protected Drawable doInBackground(Object... objects) {

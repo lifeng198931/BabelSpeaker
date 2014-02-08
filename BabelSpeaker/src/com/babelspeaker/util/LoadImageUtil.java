@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.metals.data.InitData;
+import com.babelspeaker.data.InitData;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -38,7 +38,8 @@ public class LoadImageUtil {
      * LazyLoadImageActivity.this.findViewById(msg.arg1))
      * .setImageDrawable((Drawable) msg.obj); } };
      */
-    private ExecutorService mExecutorService = Executors.newFixedThreadPool(5); // 固定五个线程来执行任�?
+    private ExecutorService mExecutorService = Executors.newFixedThreadPool(5); // 固定五个线程来执行任务
+
     private AsyncImageLoader asyncImageLoader = new AsyncImageLoader();
     private AsyncImageLoader3 asyncImageLoader3 = new AsyncImageLoader3();
 
@@ -104,7 +105,7 @@ public class LoadImageUtil {
     }
 
     /*
-     * // 采用handler+Thread模式实现多线程异步加�?public void loadImage2(final String url,
+     * // 采用handler+Thread模式实现多线程异步加载 public void loadImage2(final String url,
      * final int id) { Thread thread = new Thread() {
      * 
      * @Override public void run() { Drawable drawable = null; try { drawable =
@@ -116,7 +117,8 @@ public class LoadImageUtil {
      * thread.start(); thread = null; }
      */
 
-    // 引入线程池来管理多线�?    public void loadImage3(final String url, final ImageView iv) {
+    // 引入线程池来管理多线程
+    public void loadImage3(final String url, final ImageView iv) {
         mExecutorService.submit(new Runnable() {
             public void run() {
                 try {
@@ -135,14 +137,16 @@ public class LoadImageUtil {
         });
     }
 
-    // 引入线程池来管理多线�?    public void loadImageFullScreen(final String url, final ImageView iv,
+    // 引入线程池来管理多线程
+    public void loadImageFullScreen(final String url, final ImageView iv,
             final String saveName) {
         mExecutorService.submit(new Runnable() {
             public void run() {
                 try {
                     String imgUrl = url;
                     if (url.indexOf(InitData.SITE) < 0) {
-                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了�?                    } else {
+                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了。
+                    } else {
                         Net net = new Net();
                         imgUrl = net.GetRemoteString(url);
                     }
@@ -161,7 +165,8 @@ public class LoadImageUtil {
                                 if (bm == null) {
                                     return;
                                 }
-                                // 横屏状�?下宽高互�?                                int width = InitData.getHEIGHT();
+                                // 横屏状态下宽高互换
+                                int width = InitData.getHEIGHT();
                                 int height = InitData.getWIDTH();
 
                                 int bmW = bm.getWidth();// 740
@@ -202,7 +207,8 @@ public class LoadImageUtil {
         });
     }
 
-    // 仅下载图片显示到容器�?    public void loadImage(final String url, final ImageView iv,
+    // 仅下载图片显示到容器中
+    public void loadImage(final String url, final ImageView iv,
             final String saveName) {
         mExecutorService.submit(new Runnable() {
             public void run() {
@@ -236,7 +242,8 @@ public class LoadImageUtil {
         });
     }
 
-    // 引入线程池来管理多线�?    public void loadImage_ex(final String url, final ImageView iv,
+    // 引入线程池来管理多线程
+    public void loadImage_ex(final String url, final ImageView iv,
             final String saveName) {
         mExecutorService.submit(new Runnable() {
             public void run() {
@@ -282,14 +289,16 @@ public class LoadImageUtil {
 
 
 
-    // 引入线程池来管理多线�?    public void loadImage_GUO(final String url, final ImageView iv,
+    // 引入线程池来管理多线程
+    public void loadImage_GUO(final String url, final ImageView iv,
             final String saveName) {
         mExecutorService.submit(new Runnable() {
             public void run() {
                 try {
                     String imgUrl = url;
                     if (url.indexOf(InitData.SITE) < 0) {
-                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了�?                    } else {
+                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了。
+                    } else {
                         Net net = new Net();
                         imgUrl = net.GetRemoteString(url);
                     }
@@ -356,7 +365,8 @@ public class LoadImageUtil {
                 try {
                     String imgUrl = url;
                     if (url.indexOf(InitData.SITE) < 0) {
-                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了�?                    } else {
+                        // 如果没找到站点，则说明是外部图片地址，直接下载就行了。
+                    } else {
                         Net net = new Net();
                         imgUrl = net.GetRemoteString(url);
                     }
@@ -486,9 +496,10 @@ public class LoadImageUtil {
         });
     }
 
-    // 引入线程池，并引入内存缓存功�?并对外部调用封装了接口，�?��调用过程
+    // 引入线程池，并引入内存缓存功能,并对外部调用封装了接口，简化调用过程
     public void loadImage4(final String url, final ImageView iv) {
-        // 如果缓存过就会从缓存中取出图像，ImageCallback接口中方法也不会被执�?        Drawable cacheImage = asyncImageLoader.loadDrawable(url,
+        // 如果缓存过就会从缓存中取出图像，ImageCallback接口中方法也不会被执行
+        Drawable cacheImage = asyncImageLoader.loadDrawable(url,
                 new AsyncImageLoader.ImageCallback() {
                     // 请参见实现：如果第一次加载url时下面方法会执行
                     public void imageLoaded(Drawable imageDrawable) {
@@ -502,7 +513,8 @@ public class LoadImageUtil {
 
     // 采用Handler+Thread+封装外部接口
     public void loadImage5(final String url, final ImageView iv) {
-        // 如果缓存过就会从缓存中取出图像，ImageCallback接口中方法也不会被执�?        Drawable cacheImage = asyncImageLoader3.loadDrawable(url,
+        // 如果缓存过就会从缓存中取出图像，ImageCallback接口中方法也不会被执行
+        Drawable cacheImage = asyncImageLoader3.loadDrawable(url,
                 new AsyncImageLoader3.ImageCallback() {
                     // 请参见实现：如果第一次加载url时下面方法会执行
                     public void imageLoaded(Drawable imageDrawable) {

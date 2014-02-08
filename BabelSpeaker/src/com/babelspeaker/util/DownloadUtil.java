@@ -12,7 +12,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.metals.data.InitData;
+import com.babelspeaker.data.InitData;
 
 import android.content.Context;
 import android.os.Environment;
@@ -79,7 +79,7 @@ public class DownloadUtil {
 
         String imgUrl = url;
         if (url.indexOf(InitData.SITE) < 0) {
-            // 如果没找到站点，则说明是外部图片地址，直接下载就行了�?
+            // 如果没找到站点，则说明是外部图片地址，直接下载就行了。
         } else {
             Net net = new Net();
             imgUrl = net.GetRemoteString(url);

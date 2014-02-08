@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import com.metals.data.InitData;
+import com.babelspeaker.data.InitData;
 
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -27,7 +27,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 
 /**
- * 工具�?
+ * 工具类
  * 
  * @author mark
  * 
@@ -44,7 +44,7 @@ public class Tools {
     }
 
     /**
-     * Role:获取当前设置的电话号�?<BR>
+     * Role:获取当前设置的电话号码 <BR>
      */
     public String getNativePhoneNumber(Context context) {
         String NativePhoneNumber = null;
@@ -55,8 +55,8 @@ public class Tools {
     }
 
     /**
-     * Role:Telecom service providers获取手机服务商信�?<BR>
-     * �?��加入权限<uses-permission
+     * Role:Telecom service providers获取手机服务商信息 <BR>
+     * 需要加入权限<uses-permission
      * android:name="android.permission.READ_PHONE_STATE"/> <BR>
      * Date:2012-3-12 <BR>
      */
@@ -66,7 +66,7 @@ public class Tools {
             TelephonyManager telephonyManager = (TelephonyManager) context
                     .getSystemService(Context.TELEPHONY_SERVICE);
             String IMSI = telephonyManager.getSubscriberId();
-            // IMSI号前�?�?60是国家，紧接�?���?�?0 02 07是中国移动，01 06是中国联通，03 05是中国电信�?
+            // IMSI号前面3位460是国家，紧接着后面2位00 02 07是中国移动，01 06是中国联通，03 05是中国电信。
             if (IMSI.startsWith("46000") || IMSI.startsWith("46002") || IMSI.startsWith("46007")) {
                 ProvidersName = "YD";
             } else if (IMSI.startsWith("46001") || IMSI.startsWith("46006")) {
@@ -109,7 +109,7 @@ public class Tools {
     }
 
     /**
-     * check 是否有可用网�?
+     * check 是否有可用网络
      * 
      * @return
      */
@@ -267,7 +267,7 @@ public class Tools {
     }
 
     /**
-     * 判断是否为数�?
+     * 判断是否为数字
      * 
      * @param str
      * @return
@@ -289,7 +289,7 @@ public class Tools {
         return !mKeyguardManager.inKeyguardRestrictedInputMode();
     }
 
-    // 比较第结束时间是否大于当前时�?
+    // 比较第结束时间是否大于当前时间
     public boolean compare_date(String endTime, String currentTime) {
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -297,7 +297,7 @@ public class Tools {
             Date dt1 = df.parse(endTime);
             Date dt2 = df.parse(currentTime);
             if (dt1.getTime() > dt2.getTime()) {
-                // System.out.println("dt1 在dt2�?);
+                // System.out.println("dt1 在dt2前");
                 return true;
             } else {
                 return false;
@@ -336,7 +336,7 @@ public class Tools {
     }
 
     /**
-     * 小数2�?float
+     * 小数2位 float
      * 
      * @param val
      * @return
@@ -355,7 +355,7 @@ public class Tools {
                 }
             }
         } catch (Exception e) {
-            // 不�?�?
+            // 不退出
         }
         return ret;
     }
@@ -389,7 +389,7 @@ public class Tools {
                 }
             }
         } catch (Exception e) {
-            // 不�?�?
+            // 不退出
         }
         return ret;
     }
@@ -504,7 +504,7 @@ public class Tools {
     }
 
     public String getCommState(String state) {
-        // 0受理�?撤销�?完成
+        // 0受理，1撤销，2完成
         String ret = "";
         switch (Integer.parseInt(state)) {
         case 0:
@@ -548,7 +548,7 @@ public class Tools {
     }
 
     /*
-     * 描述不同公司手机号码规则的正则表达式 cmcc-中国移动手机号码规则 cucc-中国联�?手机号码规则 cnc--中国网�?3G手机号码规则
+     * 描述不同公司手机号码规则的正则表达式 cmcc-中国移动手机号码规则 cucc-中国联通手机号码规则 cnc--中国网通3G手机号码规则
      */
     private static String cmcc = "^[1]{1}(([3]{1}[4-9]{1})|([5]{1}[012789]{1}))[0-9]{8}$";
     private static String cucc = "^[1]{1}(([3]{1}[0-3]{1})|([5]{1}[3456]{1}))[0-9]{8}$";
@@ -556,26 +556,26 @@ public class Tools {
 
     public int matchNum(String mobPhnNum) {
         int flag;// 存储匹配结果
-        // 判断手机号码是否�?1�?
+        // 判断手机号码是否是11位
         if (mobPhnNum.length() == 11) {
-            // 判断手机号码是否符合中国移动的号码规�?
+            // 判断手机号码是否符合中国移动的号码规则
             if (mobPhnNum.matches(cmcc)) {
                 flag = 1;
             }
-            // 判断手机号码是否符合中国联�?的号码规�?
+            // 判断手机号码是否符合中国联通的号码规则
             else if (mobPhnNum.matches(cucc)) {
                 flag = 2;
             }
-            // 判断手机号码是否符合中国网�?的号码规�?
+            // 判断手机号码是否符合中国网通的号码规则
             else if (mobPhnNum.matches(cnc)) {
                 flag = 3;
             }
-            // 都不合�?
+            // 都不合适
             else {
                 flag = 4;
             }
         }
-        // 不是11�?
+        // 不是11位
         else {
             flag = 5;
         }
@@ -612,7 +612,7 @@ public class Tools {
             else
                 md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
         }
-        // 16位加密，从第9位到25�?
+        // 16位加密，从第9位到25位
         if (splite) {
             return md5StrBuff.substring(7, 19).toString().toLowerCase();
         } else {
